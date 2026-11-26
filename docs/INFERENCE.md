@@ -82,7 +82,6 @@ CV_PLATFORM_CAMERA_DEVICE=/dev/video0 docker compose \
 - Chromium 模拟摄像头验证采集、推理、页面关闭后中断；桌面、1366×768 和 390 像素窄屏验证，无页面脚本错误和横向溢出。
 - 使用 [MediaMTX 1.21.2](https://github.com/bluenviron/mediamtx/releases/tag/v1.21.2) 与本地生成视频进行模拟 RTSP 推流，验证真实 RTSP 协议接入、断流重连、新片段与手动停止。
 - 服务器摄像头通过模拟捕获后端验证设备编号解析、采集与关闭。**未连接物理服务器摄像头，也没有用户真实 RTSP 设备；两项真实设备连通性按用户确认留待设备可用后验收。**
-- 验收脚本、截图和报告样例保存在忽略目录 `runtime/inference-phase1/`，不将真实媒体或数据库备份提交到仓库。
 
 ## YOLO26 推理
 

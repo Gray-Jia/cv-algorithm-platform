@@ -206,4 +206,3 @@ PostgreSQL 保存业务记录和持久队列；图片、视频、权重、算法
 - 使用：[训练](docs/TRAINING.md) · [数据集](docs/DATASETS.md) · [推理](docs/INFERENCE.md) · [评测](docs/EVALUATION.md) · [导出](docs/EXPORTS.md)
 - 运维：[服务器部署](docs/SERVER-DEPLOYMENT.md) · [模型部署](docs/DEPLOYMENT.md) · [GPU 节点](docs/GPU-NODES.md) · [备份与恢复](docs/BACKUP-RESTORE.md) · [监控](docs/MONITORING.md) · [数据库迁移](database/README.md)
 - 需求：[平台 PRD](docs/PRD-多算法CV可视化平台.md) · [功能覆盖矩阵](docs/FEATURE-COVERAGE.md) · [模型训练需求与计划](模型训练.md) · [模型推理需求与计划](模型推理.md)
-- 历史开发：[第一轮](docs/ROUND-1-DEVELOPMENT.md) · [第二轮](docs/ROUND-2-DEVELOPMENT.md) · [第三至第五轮](docs/ROUND-3-TO-5-DEVELOPMENT.md)

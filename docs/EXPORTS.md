@@ -1,6 +1,6 @@
 # 模型导出与导出后验证
 
-当前支持 YOLO 目标检测 `.pt` → **FP32 ONNX**，固定 Ultralytics 8.4.183。转换、原始权重验证、ONNX Runtime 验证及耗时测量均在所选节点的 CPU 上执行，无需 GPU。验收记录见 [EXPORT-VALIDATION.md](EXPORT-VALIDATION.md)。
+当前支持 YOLO 目标检测 `.pt` → **FP32 ONNX**，固定 Ultralytics 8.4.183。转换、原始权重验证、ONNX Runtime 验证及耗时测量均在所选节点的 CPU 上执行，无需 GPU。
 
 ## 使用
 
@@ -84,3 +84,5 @@ GET /api/v1/training/parameter-contract?mode=export
 必须同步更新 Backend、Frontend、相关 Manager 与训练镜像。训练镜像除参数/来源协议标签外，还须包含 `cv.platform.export-protocol=ultralytics:8.4.183:onnx-v1`。固定依赖为 `onnx==1.19.1`、`onnxruntime==1.23.2`、`onnxslim==0.1.82`，运行时关闭自动安装、默认断网；缺依赖应重建镜像。
 
 正式上线前备份数据库和 training-store，并核对各节点镜像及协议标签。测试镜像或挂载源码的验收不等于生产服务已经升级。
+
+复测可用匹配类别的测试权重在隔离环境运行[转换验证脚本](../scripts/verify_onnx_export.py)。[平台全链路脚本](../scripts/verify_export_lifecycle.py)需要内存仓储、临时存储目录及独立测试节点。静态和动态 ONNX 已用合成测试集完成同集比较，业务精度仍需用自己的数据评估。

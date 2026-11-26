@@ -70,6 +70,6 @@ parameters:
 
 YOLO 图片结果的可选 `configuration` 字段记录适配器收到的参数、上游名称映射和 predictor.args。平台在派发推理前已经补齐 manifest 默认值，因此这里的 submitted 是适配器输入。该字段可以在结果查看器或下载的结果 JSON 中查看。
 
-测试按本地组件、真实 GPU、PostgreSQL 与生产部署分别记录；参数系统的早期本地测试不能替代后续验收。自定义权重、续训和独立验证的最新结果见 [训练生命周期验收](LIFECYCLE-VALIDATION.md)，数据版本管理见 [数据集验收](DATASET-VALIDATION.md)。
+相关操作见[自定义权重与续训](TRAINING-SOURCES.md)、[独立验证](VALIDATION.md)和[数据集版本管理](DATASETS.md)。
 
 参考：[官方参数配置](https://docs.ultralytics.com/zh/usage/cfg/)、[训练](https://docs.ultralytics.com/zh/modes/train/)、[预测](https://docs.ultralytics.com/zh/modes/predict/)。升级时需重新核对实际 wheel 和参数目录，而非直接放开未知字段。

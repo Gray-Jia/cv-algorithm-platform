@@ -77,4 +77,6 @@ POST   /api/v1/training/runs
 
 主平台和各 GPU 节点的 Manager、共享 SDK、训练镜像必须一起更新。新镜像需声明 `cv.platform.training-protocol=ultralytics:8.4.183:sources-v1` 及当前参数契约标签；缺少协议或哈希不一致时明确失败。自定义权重、微调、续训和独立验证当前均限制单卡。
 
-相关：[训练中心](TRAINING.md)、[独立验证](VALIDATION.md)、[本阶段验收](LIFECYCLE-VALIDATION.md)。
+可用[续训验证脚本](../scripts/verify_training_resume.py)在隔离 GPU 环境复测中断恢复、微调及独立 `test` 验证。该脚本使用合成样本；业务模型精度需另行验证。
+
+相关：[训练中心](TRAINING.md)、[独立验证](VALIDATION.md)。

@@ -141,7 +141,7 @@ docker compose --profile algorithm-images build yolo-trainer \
 
 本轮验收：后端 250 项、前端 126 项测试通过，Ruff（本轮后端文件）、ESLint、类型检查与生产构建通过。数据库迁移在独立库执行升级、回退与再升级后，备份本机数据库并应用迁移。两个 YOLO26 CPU 测试版本各完成 4 张 COCO8 图片的真实推理，验证错误筛选、审核状态、重复收集和不可变数据版本；网页实测绘制、移动、坐标编辑、删除、保存再加载、审核及生成 v3 数据。实验对比、CSV 下载、复用配置不自动提交，以及 390px 窄屏无页面横向溢出均通过。
 
-GPU 复验尚未完成：本机 `nvidia-smi` 报 `Driver/library version mismatch`，加载的内核模块为 595.91.07，NVML 库为 595.99；本次没有重启主机或改动显卡驱动。GPU 恢复后需补验“审核后的新版本直接训练”。CPU 测试模型已停用并停止实例，原 YOLO11/YOLO26 模型保留；本机服务仍不随开机启动。验收数据和截图保存在被 Git 忽略的 `runtime/workflow-improvements/`。
+当时因本机 NVIDIA 驱动与运行库版本不一致，未完成“审核后的新版本直接进行 GPU 训练”的验证。CPU 测试模型已停用并停止实例，原 YOLO11/YOLO26 模型保留。
 
 
 ## Faster R-CNN 训练与推理一致性（2026-10-24）
@@ -175,7 +175,7 @@ docker compose -f compose.yaml -f compose.database.yaml -f compose.local.yaml --
 
 验收结果：后端完整回归 251 项、训练节点 74 项、前端 127 项通过，另有推理镜像内 2 项结构/类别/NMS 契约测试通过；Ruff、ESLint、类型检查和生产构建通过。CPU 实测官方 COCO8 单轮微调、zebra/elephant 两类别从头训练、停止后恢复至完整 4 轮、发布权重独立验证（与训练最终评估指标完全一致）、训练模型发布后真实图片推理及模型 ID/版本核对，报告和图表下载通过。小规模验收只验证功能与兼容性，不代表正式精度效果。
 
-浏览器验证了算法与参数切换、CPU 配置、配置复用、任务筛选、报告、推理中心模型选择及 390px 窄屏布局，无脚本错误或页面横向溢出。截图、报告与运行记录位于忽略目录 `runtime/faster-rcnn-training/`。同时修复已删除的失败推理容器仍被节点缓存引用、无法重建的问题。
+浏览器验证了算法与参数切换、CPU 配置、配置复用、任务筛选、报告、推理中心模型选择及 390px 窄屏布局，无脚本错误或页面横向溢出。同时修复已删除的失败推理容器仍被节点缓存引用、无法重建的问题。
 
 本机服务已更新，docker.service、docker.socket、containerd.service 仍为 disabled，平台容器 restart=no。GPU 实机验收仍因 NVIDIA 内核模块与 NVML 版本不一致而待补；没有重启主机或改动显卡驱动。
 
@@ -191,4 +191,4 @@ docker compose -f compose.yaml -f compose.database.yaml -f compose.local.yaml --
 
 接口：`POST /training/batches/delete-preview` 预检查；`POST /training/batches` 提交；`GET /training/batches/{id}` 查询；`GET /training/batches/{id}/download` 下载。
 
-已通过前端选择、确认、幂等重试和刷新恢复测试，以及后端打包、项目隔离、部分失败、运行任务保护、独立模型保护和中断恢复测试。本机浏览器已验证两个既有任务的指标 ZIP，并仅删除两个专门创建的验收任务；375 / 768 / 1024 / 1440px 页面无横向溢出。验收截图和脚本保存在忽略目录 `runtime/batch-qa/`。
+已通过前端选择、确认、幂等重试和刷新恢复测试，以及后端打包、项目隔离、部分失败、运行任务保护、独立模型保护和中断恢复测试。本机浏览器已验证两个既有任务的指标 ZIP，并仅删除两个专门创建的验收任务；375 / 768 / 1024 / 1440px 页面无横向溢出。
